@@ -1,0 +1,8 @@
+<Image
+                  width={600}
+                  height={400}
+                  src={commonImage}
+                  alt="Post Image"
+                  className="w-full object-cover aspect-[14/9]"
+                  priority
+                />
