@@ -1,0 +1,19 @@
+Open the terminal and navigate to your project directory, then enter the following commands.
+
+COMMANDS :-
+
+    git init
+    git add .   // Add All Files to Staging Area
+
+    git config --global core.autocrlf true  // To normalise line endings, ( Recommended for Windows users )
+
+    git config --global user.name "your-name"   // To sign in to a perticular git account
+    git config --global user.email "your-email@example.com"
+    git config --global --list  // to verify account
+
+    git commit -m "Initial commit"  // to create a commit
+
+    git remote add origin ["you repo address.git"]   // to connect to git repo
+    git branch -M main  // to select main branch
+    git push -u origin main // push files to main branch
+
