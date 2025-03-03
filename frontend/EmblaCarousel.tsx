@@ -43,61 +43,61 @@ const TestimonialsCarousel = () => {
   const scrollNext = () => emblaApi?.scrollNext();
 
   return (
-    <div className="py-12">
-      <div className="container mx-auto relative">
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex w-full">
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="px-4 min-w-[100%] sm:min-w-[50%]"
-              >
-                <div className="bg-[#122542] shadow-md rounded-2xl p-6 text-white grid gap-4">
-                  <div className="flex items-center gap-2">
-                    <TestimonialIconSVG />
-                    <h3 className="text-lg font-semibold text-mainBrown">
-                      {testimonial.title}
-                    </h3>
-                  </div>
-                  <p className="text-sm italic text-gray-300">
-                    {testimonial.comment}
-                  </p>
-                  <div className="border-b border-gray-600 my-2"></div>
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src={testimonial.imgPath}
-                      width={200}
-                      height={200}
-                      alt={testimonial.personName}
-                      className="w-12 h-12 rounded-full border-2 border-mainBrown"
-                    />
-                    <div>
-                      <p className="font-semibold text-white">
-                        {testimonial.personName}
-                      </p>
-                      <span className="text-xs text-gray-400">
-                        {testimonial.personPost}
-                      </span>
-                    </div>
+    <div className="relative container mx-auto">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex w-full">
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.id}
+              className="px-2 min-w-[100%] sm:min-w-[33.33333%]"
+            >
+              <div className="bg-[#122542] shadow-md rounded-2xl p-6 text-white grid gap-4">
+                <div className="flex items-center gap-2">
+                  <TestimonialIconSVG />
+                  <h3 className="text-lg font-semibold text-mainBrown">
+                    {testimonial.title}
+                  </h3>
+                </div>
+                <p className="text-sm italic text-gray-300">
+                  {testimonial.comment}
+                </p>
+                <div className="border-b border-gray-600 my-2"></div>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src={testimonial.imgPath}
+                    width={200}
+                    height={200}
+                    alt={testimonial.personName}
+                    className="w-12 h-12 rounded-full border-2 border-mainBrown"
+                  />
+                  <div>
+                    <p className="font-semibold text-white">
+                      {testimonial.personName}
+                    </p>
+                    <span className="text-xs text-gray-400">
+                      {testimonial.personPost}
+                    </span>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Carousel Controls */}
+      {/* Carousel Controls */}
+      <div className="flex justify-center mt-4 gap-4">
         <button
           onClick={scrollPrev}
-          className="absolute cursor-pointer left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-2 rounded-full"
+          className="lg:absolute cursor-pointer -left-10 lg:top-1/2 transform lg:-translate-y-1/2 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-2 rounded-full"
         >
-          <ChevronLeft size={20} className="text-mainBrown" />
+          <ChevronLeft size={30} className="text-mainBrown" />
         </button>
         <button
           onClick={scrollNext}
-          className="absolute cursor-pointer right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-2 rounded-full"
+          className="lg:absolute cursor-pointer -right-10 lg:top-1/2 transform lg:-translate-y-1/2 bg-white bg-opacity-10 hover:bg-opacity-20 text-white p-2 rounded-full"
         >
-          <ChevronRight size={20} className="text-mainBrown" />
+          <ChevronRight size={30} className="text-mainBrown" />
         </button>
       </div>
     </div>
