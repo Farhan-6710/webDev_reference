@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// Carousel.tsx
 interface CarouselProps {
   breakpoints: {
     mobile: number;
@@ -11,14 +10,12 @@ interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({ breakpoints }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
   const slides = [
-    "bg-red-500",
-    "bg-blue-500",
-    "bg-green-500",
-    "bg-yellow-500",
-    "bg-purple-500",
-    "bg-pink-500",
+    "green-500",
+    "red-500",
+    "blue-500",
+    "yellow-500",
+    "purple-500",
   ];
 
   const getSlidesToShow = () => {
@@ -29,24 +26,20 @@ const Carousel: React.FC<CarouselProps> = ({ breakpoints }) => {
   };
 
   const slidesToShow = getSlidesToShow();
-  const maxIndex = slides.length - slidesToShow;
 
-  const handlePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevIndex) => prevIndex -1);
-    }
+  const handlePrevClick = () => {
+    if (currentIndex >= 0) return setCurrentIndex((prevIndex) => prevIndex - 1);
   };
 
-  const handleNext = () => {
-    if (currentIndex < maxIndex) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-    }
+  const handleNextClick = () => {
+    if (currentIndex < slides.length - slidesToShow)
+      return setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative w-full overflow-hidden">
       <div
-        className="flex transition-transform duration-300"
+        className="flex w-full transition-transform duration-300"
         style={{
           transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
         }}
@@ -54,30 +47,26 @@ const Carousel: React.FC<CarouselProps> = ({ breakpoints }) => {
         {slides.map((color, index) => (
           <div
             key={index}
-            className={`w-full h-40 ${color} flex-shrink-0`}
+            className={`h-40 bg-${color} font-bold font-serif text-4xl flex justify-center items-center flex-shrink-0`}
             style={{ width: `${100 / slidesToShow}%` }}
-          />
+          >
+            {index + 1}
+          </div>
         ))}
       </div>
-      <button
-        onClick={handlePrev}
-        className="absolute top-1/2 -translate-y-1/2 left-0 h-14 w-14 rounded-full cursor-pointer bg-slate-950 text-white z-20"
-      >
-        Prev
-      </button>
-      <button
-        onClick={handleNext}
-        className="absolute top-1/2 -translate-y-1/2 right-0 h-14 w-14 rounded-full cursor-pointer bg-slate-950 text-white z-200"
-      >
-        Next
-      </button>
+      <div className="flex justify-center mt-5 gap-4">
+        <button className="cursor-pointer" onClick={handlePrevClick}>
+          prev
+        </button>
+        <button className="cursor-pointer" onClick={handleNextClick}>
+          next
+        </button>
+      </div>
     </div>
   );
 };
 
 export default Carousel;
-
-
 
 // CarouselSection.tsx
 import React from "react"
