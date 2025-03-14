@@ -27,13 +27,14 @@ const Carousel: React.FC<CarouselProps> = ({ breakpoints }) => {
 
   const slidesToShow = getSlidesToShow();
 
-  const handlePrevClick = () => {
-    if (currentIndex >= 0) return setCurrentIndex((prevIndex) => prevIndex - 1);
+  const maxLength = slides.length - slidesToShow;
+
+  const handlePrev = () => {
+    if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
   };
 
-  const handleNextClick = () => {
-    if (currentIndex < slides.length - slidesToShow)
-      return setCurrentIndex((prevIndex) => prevIndex + 1);
+  const handleNext = () => {
+    if (currentIndex < maxLength) setCurrentIndex((prev) => prev + 1);
   };
 
   return (
@@ -48,18 +49,24 @@ const Carousel: React.FC<CarouselProps> = ({ breakpoints }) => {
           <div
             key={index}
             className={`h-40 bg-${color} font-bold font-serif text-4xl flex justify-center items-center flex-shrink-0`}
-            style={{ width: `${100 / slidesToShow}%` }}
+            style={{ width: `${100 / slidesToShow}% ` }}
           >
             {index + 1}
           </div>
         ))}
       </div>
-      <div className="flex justify-center mt-5 gap-4">
-        <button className="cursor-pointer" onClick={handlePrevClick}>
-          prev
+      <div className="flex justify-center items-center gap-4 mt-4">
+        <button
+          className="bg-gray-300 p-4 rounded-full h-12 w-12 flex justify-center items-center"
+          onClick={handlePrev}
+        >
+          -
         </button>
-        <button className="cursor-pointer" onClick={handleNextClick}>
-          next
+        <button
+          className="bg-gray-300 p-4 rounded-full h-12 w-12 flex justify-center items-center"
+          onClick={handleNext}
+        >
+          +
         </button>
       </div>
     </div>
@@ -67,6 +74,7 @@ const Carousel: React.FC<CarouselProps> = ({ breakpoints }) => {
 };
 
 export default Carousel;
+
 
 // CarouselSection.tsx
 import React from "react"
