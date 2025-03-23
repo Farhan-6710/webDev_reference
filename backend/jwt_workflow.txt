@@ -1,0 +1,68 @@
+🔹 Workflow of JWT
+1️⃣ User Logs In → Login controller generates a JWT token and sends it to the frontend.
+2️⃣ Frontend Stores Token → Token is saved in localStorage or httpOnly cookies.
+3️⃣ User Makes API Calls → Token is sent in the Authorization header as Bearer <token>.
+4️⃣ Backend Verifies Token → Uses the JWT secret key (without checking DB) to decode and validate it.
+5️⃣ Token is Unique → Typically 256+ characters, generated using a secret/private key.
+6️⃣ Each Token is Different → Every login generates a completely new JWT, even for the same user.
+7️⃣ Token Expiry → Tokens usually expire (e.g., 15 min - 1 hour for access tokens).
+8️⃣ Token is Lost → If localStorage is cleared or token expires, API calls fail with 401 Unauthorized.
+9️⃣ User is Redirected to Login → Frontend detects missing/expired token and asks user to re-login.
+🔟 User Logs In Again → New token is generated, stored, and API calls work again.
+
+--------------------------------------------------------------------------------------------------------
+
+🔹 Workflow of JWT with Refresh Token
+
+1️⃣ User Logs In
+Backend generates two tokens:
+
+Access Token (short-lived, e.g., 15 min - 1 hour)
+
+Refresh Token (long-lived, e.g., days/weeks)
+
+Tokens are sent to the frontend.
+
+2️⃣ Frontend Stores Tokens
+Access Token → Stored in memory or localStorage (for API calls).
+
+Refresh Token → Stored in httpOnly cookies (for security).
+
+3️⃣ User Makes API Calls
+Access Token is included in the Authorization header (Bearer <token>).
+
+Backend verifies the token before processing the request.
+
+4️⃣ How is JWT Verified (Without DB Check)?
+Backend decodes the JWT using the secret key.
+
+JWT contains:
+
+Header (Algorithm used)
+
+Payload (User ID, role, expiry, etc.)
+
+Signature (Encrypted with the secret key)
+
+If the signature matches the secret key, the token is valid.
+
+No DB check is required, as the token itself holds all necessary user data.
+
+5️⃣ Token Expiry & Refresh Mechanism
+If Access Token expires, API requests fail with 401 Unauthorized.
+
+Frontend automatically sends the Refresh Token to /refresh-token API.
+
+Backend:
+
+Verifies the Refresh Token (This one is stored in the DB to prevent reuse).
+
+Issues a new Access Token if valid.
+
+Rejects request if Refresh Token is missing, expired, or blacklisted.
+
+6️⃣ If Refresh Token is Expired or Invalid
+User must log in again to get new tokens.
+
+7️⃣ User Logs In Again
+Backend generates fresh tokens, frontend stores them, and API calls resume.
