@@ -1,0 +1,19 @@
+export const useUserInfo = () => {
+  return {
+    name: "Farhan",
+    role: "Frontend Dev",
+    loggedIn: true,
+  };
+};
+
+--------------------------------------------------------------------------------
+
+const userInfo = useUserInfo(); // ✅ call the hook first
+const name = userInfo.name;
+const role = userInfo.role;
+const loggedIn = userInfo.loggedIn;
+
+--------------------------------------------------------------------------------
+
+const { name, role, loggedIn } = useUserInfo(); // ✅ cleaner and preferred
+
