@@ -8,12 +8,16 @@ export const useUserInfo = () => {
 
 --------------------------------------------------------------------------------
 
+// Without destructuring objects
+
 const userInfo = useUserInfo(); // ✅ call the hook first
 const name = userInfo.name;
 const role = userInfo.role;
 const loggedIn = userInfo.loggedIn;
 
 --------------------------------------------------------------------------------
+
+// With destructuring objects
 
 const { name, role, loggedIn } = useUserInfo(); // ✅ cleaner and preferred
 
