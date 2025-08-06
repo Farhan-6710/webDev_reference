@@ -16,4 +16,5 @@ COMMANDS :-
     git remote add origin ["you repo address.git"]   // to connect to git repo
     git branch -M main  // to select main branch
     git push -u origin main // push files to main branch
-
+    
+    git push -f -u origin main // force push
