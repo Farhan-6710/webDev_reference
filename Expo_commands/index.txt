@@ -1,0 +1,26 @@
+For Expo go :- npx expo start
+Clean cache before build :- npx expo prebuild --clean
+Development build :- eas build --profile development
+Preview build :- eas build --profile preview
+Production build :- eas build --profile production
+
+
+
+eas.json file -----------------------------------------------
+
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "channel": "preview",
+      "distribution": "internal"
+    },
+    "production": {
+      "channel": "production",
+      "distribution": "store"
+    }
+  }
+}
